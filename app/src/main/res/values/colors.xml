@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="background">#2B2D42</color>
+    <color name="roxo_header">#8789C0</color>
+    <color name="roxo_input">#B1B2DD</color>
+    <color name="roxo_placholder">#F0F0FF</color>
+    <color name="roxo_stroke">#B1B2DD</color>
+</resources>
