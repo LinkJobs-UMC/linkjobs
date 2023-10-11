@@ -33,7 +33,7 @@
         android:hint="Pesquise por cargo, competencia, tecnologia e etc."
         android:textSize="12dp"
         android:padding="8dp"
-        android:layout_marginRight="100dp"
+        android:textColor="#FFF"
         android:textColorHint="@color/roxo_placholder"
         android:background="@drawable/buscador_input"
         app:layout_constraintTop_toTopOf="parent"
@@ -44,15 +44,96 @@
         />
 
     <ImageView
+        android:id="@+id/container_vaga1"
+        android:layout_width="match_parent"
+        android:layout_height="66dp"
+        android:src="@drawable/vagas_conainter"
+        app:layout_constraintTop_toBottomOf="@id/header"
+        />
+
+    <ImageView
+        android:id="@+id/fundo_vaga1"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:src="@drawable/logo_empresa"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        app:layout_constraintStart_toStartOf="@id/container_vaga1"
+        app:layout_constraintTop_toTopOf="@id/container_vaga1"
+        />
+
+    <ImageView
+        android:id="@+id/logo_vaga1"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:src="@drawable/logo_empresa"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        app:layout_constraintStart_toStartOf="@id/container_vaga1"
+        app:layout_constraintTop_toTopOf="@id/container_vaga1"
+        android:elevation="2dp"
+    />
+
+    <TextView
+        android:id="@+id/titul_vaga1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#FFF"
+        android:text="Titulo da Vaga"
+        app:layout_constraintStart_toEndOf="@id/logo_vaga1"
+        app:layout_constraintTop_toTopOf="@id/container_vaga1"
+        android:textStyle="bold"
+        android:textSize="11dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="8dp"
+        />
+
+    <TextView
+        android:id="@+id/nome_empresa1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#FFF"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toEndOf="@id/logo_vaga1"
+        app:layout_constraintTop_toBottomOf="@id/titul_vaga1"
+        android:textSize="9dp"
+        android:layout_marginLeft="8dp"
+        />
+
+    <TextView
+        android:id="@+id/local1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#FFF"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toEndOf="@id/logo_vaga1"
+        app:layout_constraintTop_toBottomOf="@id/nome_empresa1"
+        android:textSize="7dp"
+        android:layout_marginLeft="8dp"
+        />
+
+    <ImageView
         android:id="@+id/container_vaga2"
         android:layout_width="match_parent"
         android:layout_height="66dp"
         android:src="@drawable/vagas_conainter"
         app:layout_constraintTop_toBottomOf="@id/container_vaga1"
         />
-    
+
     <ImageView
         android:id="@+id/logo_vaga2"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:src="@drawable/logo_empresa"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        app:layout_constraintStart_toStartOf="@id/container_vaga2"
+        app:layout_constraintTop_toTopOf="@id/container_vaga2"
+        android:elevation="2dp"
+        />
+
+    <ImageView
+        android:id="@+id/fundo_vaga2"
         android:layout_width="38dp"
         android:layout_height="38dp"
         android:src="@drawable/logo_empresa"
@@ -102,35 +183,45 @@
         android:layout_marginLeft="8dp"
         />
 
-
-
     <ImageView
-        android:id="@+id/container_vaga1"
+        android:id="@+id/container_vaga3"
         android:layout_width="match_parent"
         android:layout_height="66dp"
         android:src="@drawable/vagas_conainter"
-        app:layout_constraintTop_toBottomOf="@id/header"
+        app:layout_constraintTop_toBottomOf="@id/container_vaga2"
         />
 
     <ImageView
-        android:id="@+id/logo_vaga1"
+        android:id="@+id/logo_vaga3"
         android:layout_width="38dp"
         android:layout_height="38dp"
         android:src="@drawable/logo_empresa"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
-        app:layout_constraintStart_toStartOf="@id/container_vaga1"
-        app:layout_constraintTop_toTopOf="@id/container_vaga1"
+        app:layout_constraintStart_toStartOf="@id/container_vaga3"
+        app:layout_constraintTop_toTopOf="@id/container_vaga3"
+        android:elevation="2dp"
+        />
+
+    <ImageView
+        android:id="@+id/fundo_vaga3"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:src="@drawable/logo_empresa"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        app:layout_constraintStart_toStartOf="@id/container_vaga3"
+        app:layout_constraintTop_toTopOf="@id/container_vaga3"
         />
 
     <TextView
-        android:id="@+id/titul_vaga1"
+        android:id="@+id/titul_vaga3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Titulo da Vaga"
         android:textColor="#FFF"
-        app:layout_constraintStart_toEndOf="@id/logo_vaga1"
-        app:layout_constraintTop_toTopOf="@id/container_vaga1"
+        app:layout_constraintStart_toEndOf="@id/logo_vaga3"
+        app:layout_constraintTop_toTopOf="@id/container_vaga3"
         android:textStyle="bold"
         android:textSize="11dp"
         android:layout_marginTop="10dp"
@@ -138,27 +229,27 @@
         />
 
     <TextView
-        android:id="@+id/nome_empresa1"
+        android:id="@+id/nome_empresa3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Empresa"
         android:textColor="#FFF"
         android:layout_marginTop="4dp"
-        app:layout_constraintStart_toEndOf="@id/logo_vaga1"
-        app:layout_constraintTop_toBottomOf="@id/titul_vaga1"
+        app:layout_constraintStart_toEndOf="@id/logo_vaga3"
+        app:layout_constraintTop_toBottomOf="@id/titul_vaga3"
         android:textSize="9dp"
         android:layout_marginLeft="8dp"
         />
 
     <TextView
-        android:id="@+id/local1"
+        android:id="@+id/local3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Cidade, Estado (Remoto)"
         android:textColor="#FFF"
         android:layout_marginTop="4dp"
-        app:layout_constraintStart_toEndOf="@id/logo_vaga1"
-        app:layout_constraintTop_toBottomOf="@id/nome_empresa1"
+        app:layout_constraintStart_toEndOf="@id/logo_vaga3"
+        app:layout_constraintTop_toBottomOf="@id/nome_empresa3"
         android:textSize="7dp"
         android:layout_marginLeft="8dp"
         />
