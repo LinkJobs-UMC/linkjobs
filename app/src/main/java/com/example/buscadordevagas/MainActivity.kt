@@ -1,40 +1,74 @@
 package com.example.buscadordevagas
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
+    private val titulos = arrayOf("Estágio", "Desenvolvedor Jr.", "Tech Recruiter")
+    private val empresas = arrayOf("Suzano", "Google", "Microsoft")
+    private val locais = arrayOf("Suzano/SP", "São Paulo/SP", "Rio de Janeiro/RJ")
+    private val imagensArray = arrayOf(
+        R.drawable.logo_suzano,
+        R.drawable.logo_google,
+        R.drawable.logo_microsoft
+    )
+
+    private lateinit var editText: EditText
+    private lateinit var textViewTitulos: Array<TextView>
+    private lateinit var textViewEmpresas: Array<TextView>
+    private lateinit var textViewLocais: Array<TextView>
+    private lateinit var imageViewArray: Array<ImageView>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val titulos = arrayOf("Estágio", "Desenvolvedor Jr.", "Tech Recruiter")
-        val empresas = arrayOf("Suzano", "Google", "Microsoft")
-        val locais = arrayOf("Suzano/SP", "São Paulo/SP", "Rio de Janeiro/RJ")
-        val imagensArray = arrayOf(
-            R.drawable.logo_suzano,
-            R.drawable.logo_google,
-            R.drawable.logo_microsoft
-        )
+        editText = findViewById(R.id.input_buscador)
 
-        val textViewTitulosIds = arrayOf(R.id.titul_vaga1, R.id.titul_vaga2, R.id.titul_vaga3)
-        val textViewEmpresasIds = arrayOf(R.id.nome_empresa1, R.id.nome_empresa2, R.id.nome_empresa3)
-        val textViewLocaisIds = arrayOf(R.id.local1, R.id.local2, R.id.local3)
-        val imageViewIds = arrayOf(R.id.logo_vaga1, R.id.logo_vaga2, R.id.logo_vaga3)
+        textViewTitulos = arrayOf(findViewById(R.id.titul_vaga1), findViewById(R.id.titul_vaga2), findViewById(R.id.titul_vaga3))
+        textViewEmpresas = arrayOf(findViewById(R.id.nome_empresa1), findViewById(R.id.nome_empresa2), findViewById(R.id.nome_empresa3))
+        textViewLocais = arrayOf(findViewById(R.id.local1), findViewById(R.id.local2), findViewById(R.id.local3))
+        imageViewArray = arrayOf(findViewById(R.id.logo_vaga1), findViewById(R.id.logo_vaga2), findViewById(R.id.logo_vaga3))
 
+        populateData()
+
+        editText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+            override fun afterTextChanged(s: Editable?) {
+                filterData(s.toString())
+            }
+        })
+    }
+
+    private fun populateData() {
         for (i in 0 until 3) {
-            val textViewTitulo = findViewById<TextView>(textViewTitulosIds[i])
-            val textViewEmpresa = findViewById<TextView>(textViewEmpresasIds[i])
-            val textViewLocal = findViewById<TextView>(textViewLocaisIds[i])
-            val imageView = findViewById<ImageView>(imageViewIds[i])
+            imageViewArray[i].setImageResource(imagensArray[i])
+            textViewTitulos[i].text = titulos[i]
+            textViewEmpresas[i].text = empresas[i]
+            textViewLocais[i].text = locais[i]
+        }
+    }
 
-            imageView.setImageResource(imagensArray[i])
-            textViewTitulo.text = titulos[i]
-            textViewEmpresa.text = empresas[i]
-            textViewLocal.text = locais[i]
+    private fun filterData(filterText: String) {
+        for (i in 0 until 3) {
+            if (titulos[i].contains(filterText, true) || empresas[i].contains(filterText, true) || locais[i].contains(filterText, true)) {
+                textViewTitulos[i].text = titulos[i]
+                textViewEmpresas[i].text = empresas[i]
+                textViewLocais[i].text = locais[i]
+            } else {
+                textViewTitulos[i].text = ""
+                textViewEmpresas[i].text = ""
+                textViewLocais[i].text = ""
+            }
         }
     }
 }
