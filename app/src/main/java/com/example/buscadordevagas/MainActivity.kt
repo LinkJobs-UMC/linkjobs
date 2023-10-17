@@ -33,21 +33,21 @@ class MainActivity : AppCompatActivity() {
         editText = findViewById(R.id.input_buscador)
 
         textViewTitulos = arrayOf(
+            findViewById(R.id.titul_vaga0),
             findViewById(R.id.titul_vaga1),
-            findViewById(R.id.titul_vaga2),
-            findViewById(R.id.titul_vaga3)
+            findViewById(R.id.titul_vaga2)
         )
         textViewEmpresas = arrayOf(
+            findViewById(R.id.nome_empresa0),
             findViewById(R.id.nome_empresa1),
-            findViewById(R.id.nome_empresa2),
-            findViewById(R.id.nome_empresa3)
+            findViewById(R.id.nome_empresa2)
         )
         textViewLocais =
-            arrayOf(findViewById(R.id.local1), findViewById(R.id.local2), findViewById(R.id.local3))
+            arrayOf(findViewById(R.id.local0), findViewById(R.id.local1), findViewById(R.id.local2))
         imageViewArray = arrayOf(
+            findViewById(R.id.logo_vaga0),
             findViewById(R.id.logo_vaga1),
-            findViewById(R.id.logo_vaga2),
-            findViewById(R.id.logo_vaga3)
+            findViewById(R.id.logo_vaga2)
         )
 
         populateData()
@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun populateData() {
-        for (i in 0 until 3) {
+        for (i in 0..2) {
             imageViewArray[i].setImageResource(imagensArray[i])
             textViewTitulos[i].text = titulos[i]
             textViewEmpresas[i].text = empresas[i]
@@ -75,12 +75,12 @@ class MainActivity : AppCompatActivity() {
     private fun filterData(filterText: String) {
         if (filterText.isEmpty()) {
             populateData()
-            for (i in 0 until 3) {
+            for (i in 0..2) {
                 showContainer(i)
             }
         } else {
             var matchFound = false
-            for (i in 0 until 3) {
+            for (i in 0..2) {
                 if (titulos[i].contains(filterText, true) || empresas[i].contains(
                         filterText,
                         true
@@ -102,7 +102,7 @@ class MainActivity : AppCompatActivity() {
             }
             if (!matchFound) {
                 populateData()
-                for (i in 0 until 3) {
+                for (i in 0..2) {
                     showContainer(i)
                 }
             }
@@ -111,17 +111,17 @@ class MainActivity : AppCompatActivity() {
 
     private fun hideContainer(index: Int) {
         when (index) {
-            0 -> hideViewsInContainer(R.id.container_vaga1)
-            1 -> hideViewsInContainer(R.id.container_vaga2)
-            2 -> hideViewsInContainer(R.id.container_vaga3)
+            0 -> hideViewsInContainer(R.id.container_vaga0)
+            1 -> hideViewsInContainer(R.id.container_vaga1)
+            2 -> hideViewsInContainer(R.id.container_vaga2)
         }
     }
 
     private fun showContainer(index: Int) {
         when (index) {
-            0 -> showViewsInContainer(R.id.container_vaga1)
-            1 -> showViewsInContainer(R.id.container_vaga2)
-            2 -> showViewsInContainer(R.id.container_vaga3)
+            0 -> showViewsInContainer(R.id.container_vaga0)
+            1 -> showViewsInContainer(R.id.container_vaga1)
+            2 -> showViewsInContainer(R.id.container_vaga2)
         }
     }
 
