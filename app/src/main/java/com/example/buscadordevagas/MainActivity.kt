@@ -59,16 +59,34 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun filterData(filterText: String) {
-        for (i in 0 until 3) {
-            if (titulos[i].contains(filterText, true) || empresas[i].contains(filterText, true) || locais[i].contains(filterText, true)) {
-                textViewTitulos[i].text = titulos[i]
-                textViewEmpresas[i].text = empresas[i]
-                textViewLocais[i].text = locais[i]
-            } else {
-                textViewTitulos[i].text = ""
-                textViewEmpresas[i].text = ""
-                textViewLocais[i].text = ""
+        if (filterText.isEmpty()) {
+            populateData()
+        } else {
+            var matchFound = false
+            for (i in 0 until 3) {
+                if (titulos[i].contains(filterText, true) || empresas[i].contains(filterText, true) || locais[i].contains(filterText, true)) {
+                    imageViewArray.forEachIndexed { index, imageView ->
+                        if (i == index) {
+                            imageView.setImageResource(imagensArray[i])
+                        } else {
+                            imageView.setImageResource(0)
+                        }
+                    }
+                    textViewTitulos[i].text = titulos[i]
+                    textViewEmpresas[i].text = empresas[i]
+                    textViewLocais[i].text = locais[i]
+                    matchFound = true
+                } else {
+                    imageViewArray[i].setImageResource(0)
+                    textViewTitulos[i].text = ""
+                    textViewEmpresas[i].text = ""
+                    textViewLocais[i].text = ""
+                }
+            }
+            if (!matchFound) {
+                populateData()
             }
         }
     }
+
 }
