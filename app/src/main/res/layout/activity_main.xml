@@ -52,17 +52,6 @@
         />
 
     <ImageView
-        android:id="@+id/fundo_vaga0"
-        android:layout_width="38dp"
-        android:layout_height="38dp"
-        android:src="@drawable/logo_empresa"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        app:layout_constraintStart_toStartOf="@id/container_vaga0"
-        app:layout_constraintTop_toTopOf="@id/container_vaga0"
-        />
-
-    <ImageView
         android:id="@+id/logo_vaga0"
         android:layout_width="38dp"
         android:layout_height="38dp"
@@ -132,17 +121,6 @@
         android:elevation="2dp"
         />
 
-    <ImageView
-        android:id="@+id/fundo_vaga1"
-        android:layout_width="38dp"
-        android:layout_height="38dp"
-        android:src="@drawable/logo_empresa"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        app:layout_constraintStart_toStartOf="@id/container_vaga1"
-        app:layout_constraintTop_toTopOf="@id/container_vaga1"
-        />
-
     <TextView
         android:id="@+id/titul_vaga1"
         android:layout_width="wrap_content"
@@ -201,17 +179,6 @@
         app:layout_constraintStart_toStartOf="@id/container_vaga2"
         app:layout_constraintTop_toTopOf="@id/container_vaga2"
         android:elevation="2dp"
-        />
-
-    <ImageView
-        android:id="@+id/fundo_vaga2"
-        android:layout_width="38dp"
-        android:layout_height="38dp"
-        android:src="@drawable/logo_empresa"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        app:layout_constraintStart_toStartOf="@id/container_vaga2"
-        app:layout_constraintTop_toTopOf="@id/container_vaga2"
         />
 
     <TextView

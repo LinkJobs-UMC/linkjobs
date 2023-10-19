@@ -77,6 +77,7 @@ class MainActivity : AppCompatActivity() {
             populateData()
             for (i in 0..2) {
                 showContainer(i)
+
             }
         } else {
             var matchFound = false
