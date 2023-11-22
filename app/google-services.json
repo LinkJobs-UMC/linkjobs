@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "959832976877",
+    "project_id": "linkjobs-da425",
+    "storage_bucket": "linkjobs-da425.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:959832976877:android:702d91339aca9e261e0be4",
+        "android_client_info": {
+          "package_name": "com.example.linkjobs"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtSS6lyA0xqzJFlhdfKqpthTU4qFs-Ljc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
