@@ -29,13 +29,19 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
-                    android:src="@drawable/baseline_tune_24" />
+                    android:src="@drawable/baseline_tune_24"
+                    app:tint="@android:color/darker_gray" />
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
                     android:src="@drawable/baseline_search_24"
-                    android:layout_margin="16dp"
-                    android:layout_alignParentEnd="true"/>
+                    app:tint="@android:color/darker_gray" />
             </RelativeLayout>
 
             <ImageView
@@ -101,6 +107,12 @@
                         android:text="Medicina Veterinária"
                         app:chipBackgroundColor="@color/white"
                         app:rippleColor="@color/white"/>
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nutrição"
+                        app:chipBackgroundColor="@color/white"
+                        app:rippleColor="@color/white"/>
                 </com.google.android.material.chip.ChipGroup>
 
 
@@ -143,7 +155,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="26/10/2023"
+                            android:text="São Paulo, SP"
                             android:textColor="@color/black"
                             android:textSize="12dp" />
                     </LinearLayout>
@@ -179,7 +191,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="17/08/2023"
+                            android:text="Mogi das Cruzes, SP"
                             android:textColor="@color/black"
                             android:textSize="12dp" />
 
@@ -217,14 +229,15 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="Megatubarão 2" />
+                            android:gravity="center"
+                            android:text="Engenheiro de Alimentos para Gatos"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="03/08/2023"
+                            android:text="Recife, PE"
                             android:textColor="@color/black"
                             android:textSize="12dp" />
 
@@ -252,24 +265,105 @@
                             android:layout_gravity="center"
                             android:src="@drawable/nike_icon" />
 
-                        <!--O Exorcista  -->
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="O Exorcista" />
+                            android:text="Marketing de Atletas"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="12/10/2023"
+                            android:text="Beaverton, Oregon, EUA"
                             android:textColor="@color/black"
                             android:textSize="12dp" />
 
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <!-- Five Nights at Freddy -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="250dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+
+                        <ImageView
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/hhm_logo" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Advogado(a) de Direitos Humanos"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Albuquerque, New Mexico, EUA"
+                            android:textColor="@color/black"
+                            android:textSize="12dp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="250dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+
+                        <ImageView
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/palmeiras_logo" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Diretor de Marketing"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="São Paulo, SP"
+                            android:textColor="@color/black"
+                            android:textSize="12dp" />
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
 
         </LinearLayout>
