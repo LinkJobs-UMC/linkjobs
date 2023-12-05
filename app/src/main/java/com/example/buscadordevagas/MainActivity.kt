@@ -8,16 +8,17 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.room.Room
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var vagaDao: VagaDao
-    private lateinit var db: AppDatabase
+    private val titulos = arrayOf("Estágio", "Desenvolvedor Jr.", "Tech Recruiter")
+    private val empresas = arrayOf("Suzano", "Google", "Microsoft")
+    private val locais = arrayOf("Suzano/SP", "São Paulo/SP", "Rio de Janeiro/RJ")
+    private val imagensArray = arrayOf(
+        R.drawable.logo_suzano,
+        R.drawable.logo_google,
+        R.drawable.logo_microsoft
+    )
 
     private lateinit var editText: EditText
     private lateinit var textViewTitulos: Array<TextView>
@@ -25,27 +26,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var textViewLocais: Array<TextView>
     private lateinit var imageViewArray: Array<ImageView>
 
-    companion object {
-        private val titulos = arrayOf("Estágio", "Desenvolvedor Jr.", "Tech Recruiter")
-        private val empresas = arrayOf("Suzano", "Google", "Microsoft")
-        private val locais = arrayOf("Suzano/SP", "São Paulo/SP", "Rio de Janeiro/RJ")
-        private val imagensArray = arrayOf(
-            R.drawable.logo_suzano,
-            R.drawable.logo_google,
-            R.drawable.logo_microsoft
-        )
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        db = Room.databaseBuilder(
-            applicationContext,
-            AppDatabase::class.java, "nome_do_banco_de_dados"
-        ).build()
-
-        vagaDao = db.vagaDao()
 
         editText = findViewById(R.id.input_buscador)
 
@@ -81,70 +64,47 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun populateData() {
-        CoroutineScope(Dispatchers.IO).launch {
-            for (i in 0..2) {
-                val vaga = Vaga(
-                    titulo = titulos[i],
-                    empresa = empresas[i],
-                    local = locais[i],
-                    imagemResourceId = imagensArray[i]
-                )
-                // Insira a vaga no banco de dados
-                vagaDao.insertVaga(vaga)
-            }
-
-            // Exibir os dados ao iniciar
-            showAllVagasOnUI()
+        for (i in 0..2) {
+            imageViewArray[i].setImageResource(imagensArray[i])
+            textViewTitulos[i].text = titulos[i]
+            textViewEmpresas[i].text = empresas[i]
+            textViewLocais[i].text = locais[i]
         }
     }
 
     private fun filterData(filterText: String) {
-        CoroutineScope(Dispatchers.IO).launch {
-            val vagas = vagaDao.getAllVagas()
-            val filteredVagas = vagas.filter {
-                it.titulo.contains(filterText, true) ||
-                        it.empresa.contains(filterText, true) ||
-                        it.local.contains(filterText, true)
-            }
-
-            withContext(Dispatchers.Main) {
-                for (i in 0..2) {
-                    if (i < filteredVagas.size) {
-                        val vaga = filteredVagas[i]
-                        imageViewArray[i].setImageResource(vaga.imagemResourceId)
-                        textViewTitulos[i].text = vaga.titulo
-                        textViewEmpresas[i].text = vaga.empresa
-                        textViewLocais[i].text = vaga.local
-                        showContainer(i)
-                    } else {
-                        imageViewArray[i].setImageResource(0)
-                        textViewTitulos[i].text = ""
-                        textViewEmpresas[i].text = ""
-                        textViewLocais[i].text = ""
-                        hideContainer(i)
-                    }
-                }
-            }
-        }
-    }
-
-    private fun showAllVagasOnUI() {
-        CoroutineScope(Dispatchers.Main).launch {
-            val vagas = vagaDao.getAllVagas()
+        if (filterText.isEmpty()) {
+            populateData()
             for (i in 0..2) {
-                if (i < vagas.size) {
-                    val vaga = vagas[i]
-                    imageViewArray[i].setImageResource(vaga.imagemResourceId)
-                    textViewTitulos[i].text = vaga.titulo
-                    textViewEmpresas[i].text = vaga.empresa
-                    textViewLocais[i].text = vaga.local
-                    showContainer(i)
+                showContainer(i)
+
+            }
+        } else {
+            var matchFound = false
+            for (i in 0..2) {
+                if (titulos[i].contains(filterText, true) || empresas[i].contains(
+                        filterText,
+                        true
+                    ) || locais[i].contains(filterText, true)
+                ) {
+                    imageViewArray[i].setImageResource(imagensArray[i])
+                    textViewTitulos[i].text = titulos[i]
+                    textViewEmpresas[i].text = empresas[i]
+                    textViewLocais[i].text = locais[i]
+                    matchFound = true
+                    showContainer(i) // Mostra o contêiner correspondente
                 } else {
                     imageViewArray[i].setImageResource(0)
                     textViewTitulos[i].text = ""
                     textViewEmpresas[i].text = ""
                     textViewLocais[i].text = ""
-                    hideContainer(i)
+                    hideContainer(i) // Oculta o contêiner sem correspondência
+                }
+            }
+            if (!matchFound) {
+                populateData()
+                for (i in 0..2) {
+                    showContainer(i)
                 }
             }
         }
