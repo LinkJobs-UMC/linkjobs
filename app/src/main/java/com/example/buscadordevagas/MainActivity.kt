@@ -8,12 +8,12 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
+import com.example.buscadordevagas.view.VagaViewModel
 
 class MainActivity : AppCompatActivity() {
 
-    private val titulos = arrayOf("Estágio", "Desenvolvedor Jr.", "Tech Recruiter")
-    private val empresas = arrayOf("Suzano", "Google", "Microsoft")
-    private val locais = arrayOf("Suzano/SP", "São Paulo/SP", "Rio de Janeiro/RJ")
+    private lateinit var vagaViewModel: VagaViewModel
     private val imagensArray = arrayOf(
         R.drawable.logo_suzano,
         R.drawable.logo_google,
@@ -30,8 +30,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        vagaViewModel = ViewModelProvider(this)[VagaViewModel::class.java]
         editText = findViewById(R.id.input_buscador)
-
         textViewTitulos = arrayOf(
             findViewById(R.id.titul_vaga0),
             findViewById(R.id.titul_vaga1),
@@ -49,62 +49,48 @@ class MainActivity : AppCompatActivity() {
             findViewById(R.id.logo_vaga1),
             findViewById(R.id.logo_vaga2)
         )
-
-        populateData()
-
         editText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
-
             override fun afterTextChanged(s: Editable?) {
                 filterData(s.toString())
             }
         })
+        vagaViewModel.allVagas.observe(this) { vagas ->
+            populateData()
+            filterData(editText.text.toString())
+        }
     }
 
     private fun populateData() {
         for (i in 0..2) {
-            imageViewArray[i].setImageResource(imagensArray[i])
-            textViewTitulos[i].text = titulos[i]
-            textViewEmpresas[i].text = empresas[i]
-            textViewLocais[i].text = locais[i]
+            vagaViewModel.allVagas.observe(this) { vagas ->
+                imageViewArray[i].setImageResource(imagensArray[i])
+                textViewTitulos[i].text = vagas[i].titulo
+                textViewEmpresas[i].text = vagas[i].empresa
+                textViewLocais[i].text = vagas[i].local
+            }
         }
     }
 
     private fun filterData(filterText: String) {
-        if (filterText.isEmpty()) {
-            populateData()
-            for (i in 0..2) {
-                showContainer(i)
-
-            }
-        } else {
-            var matchFound = false
-            for (i in 0..2) {
-                if (titulos[i].contains(filterText, true) || empresas[i].contains(
-                        filterText,
-                        true
-                    ) || locais[i].contains(filterText, true)
+        for (i in 0..2) {
+            vagaViewModel.allVagas.value?.let { vagas ->
+                if (vagas.size > i && (vagas[i].titulo.contains(filterText, true) ||
+                            vagas[i].empresa.contains(filterText, true) ||
+                            vagas[i].local.contains(filterText, true))
                 ) {
+                    showContainer(i)
                     imageViewArray[i].setImageResource(imagensArray[i])
-                    textViewTitulos[i].text = titulos[i]
-                    textViewEmpresas[i].text = empresas[i]
-                    textViewLocais[i].text = locais[i]
-                    matchFound = true
-                    showContainer(i) // Mostra o contêiner correspondente
+                    textViewTitulos[i].text = vagas[i].titulo
+                    textViewEmpresas[i].text = vagas[i].empresa
+                    textViewLocais[i].text = vagas[i].local
                 } else {
                     imageViewArray[i].setImageResource(0)
                     textViewTitulos[i].text = ""
                     textViewEmpresas[i].text = ""
                     textViewLocais[i].text = ""
-                    hideContainer(i) // Oculta o contêiner sem correspondência
-                }
-            }
-            if (!matchFound) {
-                populateData()
-                for (i in 0..2) {
-                    showContainer(i)
+                    hideContainer(i)
                 }
             }
         }
